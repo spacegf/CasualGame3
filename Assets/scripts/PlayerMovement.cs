@@ -18,10 +18,20 @@ public class PlayerMovement : MonoBehaviour {
 	private bool p1Crouched = false;
 	private bool p2Crouched = false;
 
+
 	public float crouchTimer = 0; //use deltatime to prevent gamespeed from taking over
 	public float startTimer = 1.5f;
 
+	// Dash variables 
+	public float dashTimer = 0;
+	public float dashDuration = 0.1f;
+	public float dashDelay = 0.3f;
+
 	public GameObject p1, p2;
+
+	private bool jump = true;
+	private bool dash = false;
+	private bool playable = true;
 
 	// Use this for initialization
 	void Start () {
@@ -34,18 +44,44 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		p1Movement();
-		p2Movement();
-		//check for stance value
-		if(p1StanceVal <= -15){ p1.GetComponent<SpriteRenderer>().sprite = upperStance; }
-		if(p1StanceVal > -15 && p1StanceVal < 15){ p1.GetComponent<SpriteRenderer>().sprite = defaultStance; }
-		if(p1StanceVal >= 15){ p1.GetComponent<SpriteRenderer>().sprite = lowerStance; }
-		if(p1Crouched){ p1.GetComponent<SpriteRenderer>().sprite = dodgeStance; }
 
-		if(p2StanceVal <= -15){ p2.GetComponent<SpriteRenderer>().sprite = upperStance; }
-		if(p2StanceVal > -15 && p2StanceVal < 15){ p2.GetComponent<SpriteRenderer>().sprite = defaultStance; }
-		if(p2StanceVal >= 15){ p2.GetComponent<SpriteRenderer>().sprite = lowerStance; }
-		if(p2Crouched){ p2.GetComponent<SpriteRenderer>().sprite = dodgeStance; }
+		if (playable) {
+
+			if(p1Health.value <= 0 || p2Health.value <= 0){
+				roundOver ();
+			}
+
+			p1Movement ();
+			p2Movement ();
+			//check for stance value
+			if (p1StanceVal <= -15) {
+				p1.GetComponent<SpriteRenderer> ().sprite = upperStance;
+			}
+			if (p1StanceVal > -15 && p1StanceVal < 15) {
+				p1.GetComponent<SpriteRenderer> ().sprite = defaultStance;
+			}
+			if (p1StanceVal >= 15) {
+				p1.GetComponent<SpriteRenderer> ().sprite = lowerStance;
+			}
+			if (p1Crouched) {
+				p1.GetComponent<SpriteRenderer> ().sprite = dodgeStance;
+			}
+
+			if (p2StanceVal <= -15) {
+				p2.GetComponent<SpriteRenderer> ().sprite = upperStance;
+			}
+			if (p2StanceVal > -15 && p2StanceVal < 15) {
+				p2.GetComponent<SpriteRenderer> ().sprite = defaultStance;
+			}
+			if (p2StanceVal >= 15) {
+				p2.GetComponent<SpriteRenderer> ().sprite = lowerStance;
+			}
+			if (p2Crouched) {
+				p2.GetComponent<SpriteRenderer> ().sprite = dodgeStance;
+			}
+
+			Mathf.Clamp (dashDuration, 0, dashDelay);
+		}
 
 	}
 
@@ -63,9 +99,13 @@ public class PlayerMovement : MonoBehaviour {
 			if (p2Health.value < startingHealth) {
 				p2Health.value += healthChng*healthDegn; 
 			}
-			
+	
 			p1.transform.position -= new Vector3 (speed * Time.deltaTime, 0f, 0f);
+			
+
 		}
+
+
 		
 		if(Input.GetKeyDown(KeyCode.S)){
 			if(p1StanceVal <= 15){
@@ -96,6 +136,43 @@ public class PlayerMovement : MonoBehaviour {
 			
 			p1.transform.position += new Vector3 (speed * Time.deltaTime, 0f, 0f);
 		}
+
+		if (Input.GetKey (KeyCode.H)) {
+			
+			if (jump) {
+				p1.transform.position += new Vector3 (0f, speed * Time.deltaTime, 0f);
+				jump = false; 
+			}  jump = true; 
+		}
+
+		if(Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.D)){
+
+			dashTimer += Time.deltaTime;
+
+			if (dashTimer <= dashDuration) {
+				p1Health.value -= healthChng * 2;
+				p1.transform.position += new Vector3 (speed * 2.5f * Time.deltaTime, 0f, 0f);
+
+			} else if (dashTimer > dashDelay){
+				dashTimer = 0;
+			}
+		}
+
+		if(Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.A)){
+			dashTimer += Time.deltaTime;
+
+			if (dashTimer <= dashDuration) {
+				p1Health.value -= healthChng * 2;
+				p1.transform.position -= new Vector3 (speed * 2.5f * Time.deltaTime, 0f, 0f);
+
+			} else if (dashTimer > dashDelay){
+				dashTimer = 0;
+			}
+			
+				
+		}
+
+	
 	}
 	void p2Movement(){
 		// player 1 input 
@@ -144,5 +221,45 @@ public class PlayerMovement : MonoBehaviour {
 			
 			p2.transform.position += new Vector3 (speed * Time.deltaTime, 0f, 0f);
 		}
+
+		if(Input.GetKey(KeyCode.K)){
+			if (jump) {
+				p2.transform.position += new Vector3 (0f, speed * Time.deltaTime, 0f);
+				jump = false;
+			}  
+
+			jump = true;
+		}
+
+		if(Input.GetKey(KeyCode.L) && Input.GetKey(KeyCode.RightArrow)){
+
+			dashTimer += Time.deltaTime;
+
+			if (dashTimer <= dashDuration) {
+				p2Health.value -= healthChng * 2;
+				p2.transform.position += new Vector3 (speed * 2.5f * Time.deltaTime, 0f, 0f);
+
+			} else if (dashTimer > dashDelay){
+				dashTimer = 0;
+			}
+		}
+
+		if(Input.GetKey(KeyCode.L) && Input.GetKey(KeyCode.LeftArrow)){
+			dashTimer += Time.deltaTime;
+
+			if (dashTimer <= dashDuration) {
+				p2Health.value -= healthChng * 2;
+				p2.transform.position -= new Vector3 (speed * 2.5f * Time.deltaTime, 0f, 0f);
+
+			} else if (dashTimer > dashDelay){
+				dashTimer = 0;
+			}
+
+
+		}
+	}
+
+	void roundOver(){
+		playable = false;
 	}
 }
