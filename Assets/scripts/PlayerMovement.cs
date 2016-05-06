@@ -33,6 +33,10 @@ public class PlayerMovement : MonoBehaviour {
 	private bool dash = false;
 	private bool playable = true;
 
+	//BLEED OUT
+	public float decomposeRate = 0;
+	private float decomposeValue;
+
 	// Use this for initialization
 	void Start () {
 
@@ -53,6 +57,8 @@ public class PlayerMovement : MonoBehaviour {
 
 			p1Movement ();
 			p2Movement ();
+			decomposition();
+
 			//check for stance value
 			if (p1StanceVal <= -15) {
 				p1.GetComponent<SpriteRenderer> ().sprite = upperStance;
@@ -171,7 +177,6 @@ public class PlayerMovement : MonoBehaviour {
 			
 				
 		}
-
 	
 	}
 	void p2Movement(){
@@ -262,4 +267,12 @@ public class PlayerMovement : MonoBehaviour {
 	void roundOver(){
 		playable = false;
 	}
+
+	void decomposition(){
+		decomposeValue = decomposeRate*Time.deltaTime;
+		
+		p1Health.value -= decomposeValue;
+		p2Health.value -= decomposeValue;
+	}
+
 }
