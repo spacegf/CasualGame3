@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour {
 	private bool p2Crouched = false;
 
 
+	public BoxCollider p1HitBx, p2HitBx;
+
 	public float crouchTimer = 0; //use deltatime to prevent gamespeed from taking over
 	public float startTimer = 1.5f;
 
@@ -44,6 +46,11 @@ public class PlayerMovement : MonoBehaviour {
 		p2Health.value = startingHealth;
 		p1.GetComponent<SpriteRenderer>().sprite = defaultStance;
 		p2.GetComponent<SpriteRenderer>().sprite = defaultStance;
+
+		
+
+		p1HitBx.enabled = false;
+		p2HitBx.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -100,10 +107,10 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		
 		if(Input.GetKey(KeyCode.A)){
-			p1Health.value -= healthChng;
+			p1Health.value += healthChng;
 			
-			if (p2Health.value < startingHealth) {
-				p2Health.value += healthChng*healthDegn; 
+			if (p2Health.value <= startingHealth) {
+				p2Health.value -= healthChng;//*healthDegn; 
 			}
 	
 			p1.transform.position -= new Vector3 (speed * Time.deltaTime, 0f, 0f);
@@ -134,10 +141,10 @@ public class PlayerMovement : MonoBehaviour {
 		
 		if(Input.GetKey(KeyCode.D)){
 			
-			p1Health.value -= healthChng;
+			p1Health.value += healthChng;
 			
-			if (p2Health.value < startingHealth) {
-				p2Health.value += healthChng*healthDegn; 
+			if (p2Health.value <= startingHealth) {
+				p2Health.value -= healthChng;//*healthDegn; 
 			}
 			
 			p1.transform.position += new Vector3 (speed * Time.deltaTime, 0f, 0f);
@@ -156,7 +163,7 @@ public class PlayerMovement : MonoBehaviour {
 			dashTimer += Time.deltaTime;
 
 			if (dashTimer <= dashDuration) {
-				p1Health.value -= healthChng * 2;
+				//p1Health.value += healthChng * 2;
 				p1.transform.position += new Vector3 (speed * 2.5f * Time.deltaTime, 0f, 0f);
 
 			} else if (dashTimer > dashDelay){
@@ -168,7 +175,7 @@ public class PlayerMovement : MonoBehaviour {
 			dashTimer += Time.deltaTime;
 
 			if (dashTimer <= dashDuration) {
-				p1Health.value -= healthChng * 2;
+			//	p1Health.value -= healthChng * 2;
 				p1.transform.position -= new Vector3 (speed * 2.5f * Time.deltaTime, 0f, 0f);
 
 			} else if (dashTimer > dashDelay){
@@ -177,6 +184,12 @@ public class PlayerMovement : MonoBehaviour {
 			
 				
 		}
+
+
+		if(Input.GetKey(KeyCode.F)){
+			attackC(p1HitBx);
+		}
+			
 	
 	}
 	void p2Movement(){
@@ -188,10 +201,10 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		
 		if(Input.GetKey(KeyCode.LeftArrow)){
-			p2Health.value -= healthChng;
+			p2Health.value += healthChng;
 			
-			if (p1Health.value < startingHealth) {
-				p1Health.value += healthChng*healthDegn; 
+			if (p1Health.value <= startingHealth) {
+				p1Health.value -= healthChng;//*healthDegn; 
 			}
 			
 			p2.transform.position -= new Vector3 (speed * Time.deltaTime, 0f, 0f);
@@ -218,16 +231,16 @@ public class PlayerMovement : MonoBehaviour {
 		
 		if(Input.GetKey(KeyCode.RightArrow)){
 			
-			p2Health.value -= healthChng;
+			p2Health.value += healthChng;
 			
-			if (p1Health.value < startingHealth) {
-				p1Health.value += healthChng*healthDegn; 
+			if (p1Health.value <= startingHealth) {
+				p1Health.value -= healthChng;//*healthDegn; 
 			}
 			
 			p2.transform.position += new Vector3 (speed * Time.deltaTime, 0f, 0f);
 		}
 
-		if(Input.GetKey(KeyCode.K)){
+		if(Input.GetKey(KeyCode.L)){
 			if (jump) {
 				p2.transform.position += new Vector3 (0f, speed * Time.deltaTime, 0f);
 				jump = false;
@@ -236,12 +249,12 @@ public class PlayerMovement : MonoBehaviour {
 			jump = true;
 		}
 
-		if(Input.GetKey(KeyCode.L) && Input.GetKey(KeyCode.RightArrow)){
+		if(Input.GetKey(KeyCode.Semicolon) && Input.GetKey(KeyCode.RightArrow)){
 
 			dashTimer += Time.deltaTime;
 
 			if (dashTimer <= dashDuration) {
-				p2Health.value -= healthChng * 2;
+				//p2Health.value -= healthChng * 2;
 				p2.transform.position += new Vector3 (speed * 2.5f * Time.deltaTime, 0f, 0f);
 
 			} else if (dashTimer > dashDelay){
@@ -249,11 +262,11 @@ public class PlayerMovement : MonoBehaviour {
 			}
 		}
 
-		if(Input.GetKey(KeyCode.L) && Input.GetKey(KeyCode.LeftArrow)){
+		if(Input.GetKey(KeyCode.Semicolon) && Input.GetKey(KeyCode.LeftArrow)){
 			dashTimer += Time.deltaTime;
 
 			if (dashTimer <= dashDuration) {
-				p2Health.value -= healthChng * 2;
+				//p2Health.value -= healthChng * 2;
 				p2.transform.position -= new Vector3 (speed * 2.5f * Time.deltaTime, 0f, 0f);
 
 			} else if (dashTimer > dashDelay){
@@ -261,6 +274,11 @@ public class PlayerMovement : MonoBehaviour {
 			}
 
 
+
+		}
+
+		if(Input.GetKey(KeyCode.K)){
+			attackC (p2HitBx);
 		}
 	}
 
@@ -268,11 +286,17 @@ public class PlayerMovement : MonoBehaviour {
 		playable = false;
 	}
 
+
+	void attackC(BoxCollider hitBx){
+		hitBx.enabled = true;
+	}
+
 	void decomposition(){
 		decomposeValue = decomposeRate*Time.deltaTime;
 		
 		p1Health.value -= decomposeValue;
 		p2Health.value -= decomposeValue;
+
 	}
 
 }
