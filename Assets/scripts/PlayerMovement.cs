@@ -35,6 +35,10 @@ public class PlayerMovement : MonoBehaviour {
 	private bool dash = false;
 	private bool playable = true;
 
+	//BLEED OUT
+	public float decomposeRate = 0;
+	private float decomposeValue;
+
 	// Use this for initialization
 	void Start () {
 
@@ -60,6 +64,8 @@ public class PlayerMovement : MonoBehaviour {
 
 			p1Movement ();
 			p2Movement ();
+			decomposition();
+
 			//check for stance value
 			if (p1StanceVal <= -15) {
 				p1.GetComponent<SpriteRenderer> ().sprite = upperStance;
@@ -178,11 +184,14 @@ public class PlayerMovement : MonoBehaviour {
 			
 				
 		}
+<<<<<<< HEAD
 
 		if(Input.GetKey(KeyCode.F)){
 			attackC(p1HitBx);
 		}
 
+=======
+>>>>>>> 8003d471f0408ed839ad9ab18917f749f3faf0f3
 	
 	}
 	void p2Movement(){
@@ -279,9 +288,17 @@ public class PlayerMovement : MonoBehaviour {
 		playable = false;
 	}
 
+<<<<<<< HEAD
 	void attackC(BoxCollider hitBx){
 		hitBx.enabled = true;
 
+=======
+	void decomposition(){
+		decomposeValue = decomposeRate*Time.deltaTime;
+		
+		p1Health.value -= decomposeValue;
+		p2Health.value -= decomposeValue;
+>>>>>>> 8003d471f0408ed839ad9ab18917f749f3faf0f3
 	}
 
 }
