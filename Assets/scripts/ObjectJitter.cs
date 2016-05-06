@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ObjectJitter : MonoBehaviour {
 
+	//For adjusting for background objects - set to 1 before using on UI
 	public float multX, multY;
 
 	//ADJUSTABLE PARAMETERS
@@ -17,16 +18,20 @@ public class ObjectJitter : MonoBehaviour {
 	//xAddRumble & yAddRumble adjust the additional rumble based on a percentage of the screen space that it takes up
 	//DEFAULTS: xAddRumble = 1000.0f; yAddRumble = 800.0f;
 
-	private float initX = Screen.width / 2;
-	private float initY = Screen.height / 2;
+	public bool UIObject; //check this if the object is not a UI object
 
-	private float posX, posY, dt;
+	private float initX, initY, initZ, posX, posY, dt;
 
-
-	//public GameObject title;
-
-	void Start () {
-
+	void Start (){
+		if(!UIObject){
+			initX = Screen.width / 2;
+			initY = Screen.height / 2;//Offset
+			initZ = 0.0f;
+		} else {
+			initX = transform.position.x;
+			initY = transform.position.y;//Offset
+			initZ = transform.position.z;
+		}
 	}
 
 	void Update () {
@@ -39,7 +44,7 @@ public class ObjectJitter : MonoBehaviour {
 	}
 
 	void Rumble() {
-		transform.position = new Vector3(initX, initY, 0.0f);
+		transform.position = new Vector3(initX, initY, initZ);
 		dt = Time.time;
 		posX = (Mathf.Cos (dt*Mathf.Sin (dt/xCycleMultiplyer))*xMaxDistance) - Random.Range(0.0f, Screen.width/xAddRumble);
 		posY = (Mathf.Sin (dt/yCycleMultiplyer)*yMaxDistance - Random.Range(0.0f, Screen.height/yAddRumble));
