@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\scripts\FrameCap.cs" />
+     <Compile Include="Assets\scripts\HitDetect.cs" />
      <Compile Include="Assets\scripts\PlayerMovement - Alternate.cs" />
      <Compile Include="Assets\scripts\PlayerMovement.cs" />
  <Reference Include="UnityEngine.UI">
