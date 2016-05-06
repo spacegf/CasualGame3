@@ -184,14 +184,12 @@ public class PlayerMovement : MonoBehaviour {
 			
 				
 		}
-<<<<<<< HEAD
+
 
 		if(Input.GetKey(KeyCode.F)){
 			attackC(p1HitBx);
 		}
-
-=======
->>>>>>> 8003d471f0408ed839ad9ab18917f749f3faf0f3
+			
 	
 	}
 	void p2Movement(){
@@ -288,17 +286,17 @@ public class PlayerMovement : MonoBehaviour {
 		playable = false;
 	}
 
-<<<<<<< HEAD
+
 	void attackC(BoxCollider hitBx){
 		hitBx.enabled = true;
+	}
 
-=======
 	void decomposition(){
 		decomposeValue = decomposeRate*Time.deltaTime;
 		
 		p1Health.value -= decomposeValue;
 		p2Health.value -= decomposeValue;
->>>>>>> 8003d471f0408ed839ad9ab18917f749f3faf0f3
+
 	}
 
 }
