@@ -202,7 +202,7 @@ public class PlayerMovement : MonoBehaviour {
 			}
 		}
 		
-		if(Input.GetKey(KeyCode.LeftArrow)){
+		if(Input.GetAxis("P2Horizontal") < 0){
 			p2Health.value += healthChng;
 			
 			if (p1Health.value <= startingHealth) {
@@ -231,7 +231,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		
 		
-		if(Input.GetKey(KeyCode.RightArrow)){
+		if(Input.GetAxis("P2Horizontal") > 0){
 			
 			p2Health.value += healthChng;
 			
@@ -242,7 +242,7 @@ public class PlayerMovement : MonoBehaviour {
 			p2.transform.position += new Vector3 (speed * Time.deltaTime, 0f, 0f);
 		}
 
-		if(Input.GetKey(KeyCode.L)){
+		if(Input.GetAxis("P2Jump") > 0){
 			if (jump) {
 				p2.transform.position += new Vector3 (0f, speed * Time.deltaTime, 0f);
 				jump = false;
@@ -251,7 +251,7 @@ public class PlayerMovement : MonoBehaviour {
 			jump = true;
 		}
 
-		if(Input.GetKey(KeyCode.Semicolon) && Input.GetKey(KeyCode.RightArrow)){
+		if(Input.GetAxis("P2RightDash") > 0){
 
 			dashTimer += Time.deltaTime;
 
@@ -264,7 +264,7 @@ public class PlayerMovement : MonoBehaviour {
 			}
 		}
 
-		if(Input.GetKey(KeyCode.Semicolon) && Input.GetKey(KeyCode.LeftArrow)){
+		if(Input.GetAxis("P2LeftDash") > 0){
 			dashTimer += Time.deltaTime;
 
 			if (dashTimer <= dashDuration) {
@@ -279,8 +279,10 @@ public class PlayerMovement : MonoBehaviour {
 
 		}
 
-		if(Input.GetKey(KeyCode.K)){
+		if (Input.GetAxis ("P2Attack") > 0) {
 			attackC (p2HitBx);
+		} else {
+			p2HitBx.enabled = false;
 		}
 	}
 
