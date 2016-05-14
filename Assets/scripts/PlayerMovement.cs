@@ -4,11 +4,6 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
-	public Sprite defaultStance;
-	public Sprite upperStance;
-	public Sprite lowerStance;
-	public Sprite dodgeStance;
-
 	public float speed = 1; 
 	public float startingHealth = 1000;
 	public float healthChng = 2.5f;
@@ -17,7 +12,6 @@ public class PlayerMovement : MonoBehaviour {
 	private int p1StanceVal = 0, p2StanceVal = 0;
 	private bool p1Crouched = false;
 	private bool p2Crouched = false;
-
 
 	public BoxCollider p1HitBx, p2HitBx;
 
@@ -44,9 +38,6 @@ public class PlayerMovement : MonoBehaviour {
 
 		p1Health.value = startingHealth;
 		p2Health.value = startingHealth;
-		p1.GetComponent<SpriteRenderer>().sprite = defaultStance;
-		p2.GetComponent<SpriteRenderer>().sprite = defaultStance;
-
 		
 
 		p1HitBx.enabled = false;
@@ -65,33 +56,6 @@ public class PlayerMovement : MonoBehaviour {
 			p1Movement ();
 			p2Movement ();
 			decomposition();
-
-			//check for stance value
-			if (p1StanceVal <= -15) {
-				p1.GetComponent<SpriteRenderer> ().sprite = upperStance;
-			}
-			if (p1StanceVal > -15 && p1StanceVal < 15) {
-				p1.GetComponent<SpriteRenderer> ().sprite = defaultStance;
-			}
-			if (p1StanceVal >= 15) {
-				p1.GetComponent<SpriteRenderer> ().sprite = lowerStance;
-			}
-			if (p1Crouched) {
-				p1.GetComponent<SpriteRenderer> ().sprite = dodgeStance;
-			}
-
-			if (p2StanceVal <= -15) {
-				p2.GetComponent<SpriteRenderer> ().sprite = upperStance;
-			}
-			if (p2StanceVal > -15 && p2StanceVal < 15) {
-				p2.GetComponent<SpriteRenderer> ().sprite = defaultStance;
-			}
-			if (p2StanceVal >= 15) {
-				p2.GetComponent<SpriteRenderer> ().sprite = lowerStance;
-			}
-			if (p2Crouched) {
-				p2.GetComponent<SpriteRenderer> ().sprite = dodgeStance;
-			}
 
 			Mathf.Clamp (dashDuration, 0, dashDelay);
 		}
@@ -117,7 +81,6 @@ public class PlayerMovement : MonoBehaviour {
 			
 
 		}
-
 
 		
 		if(Input.GetKeyDown(KeyCode.S)){
