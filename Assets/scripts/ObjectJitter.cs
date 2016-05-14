@@ -18,12 +18,12 @@ public class ObjectJitter : MonoBehaviour {
 	//xAddRumble & yAddRumble adjust the additional rumble based on a percentage of the screen space that it takes up
 	//DEFAULTS: xAddRumble = 1000.0f; yAddRumble = 800.0f;
 
-	public bool UIObject; //check this if the object is not a UI object
+	public bool UIObject; //check this if the object is a UI object
 
 	private float initX, initY, initZ, posX, posY, dt;
 
 	void Start (){
-		if(!UIObject){
+		if(UIObject){
 			initX = Screen.width / 2;
 			initY = Screen.height / 2;//Offset
 			initZ = 0.0f;
