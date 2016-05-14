@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float dashDuration = 0.1f;
 	public float dashDelay = 0.3f;
 
-	public GameObject p1, p2;
+	private GameObject p1, p2;
 
 	private bool jump = true;
 	private bool dash = false;
@@ -41,6 +41,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		 p1 = GameObject.FindGameObjectWithTag ("Player1");
+		 p2 = GameObject.FindGameObjectWithTag ("Player2");
 
 		p1Health.value = startingHealth;
 		p2Health.value = startingHealth;
@@ -58,9 +60,14 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (playable) {
 
+			 p1 = GameObject.FindGameObjectWithTag ("Player1");
+			 p2 = GameObject.FindGameObjectWithTag ("Player2");
+
 			if(p1Health.value <= 0 || p2Health.value <= 0){
 				roundOver ();
 			}
+
+		
 
 			p1Movement ();
 			p2Movement ();

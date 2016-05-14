@@ -3,8 +3,8 @@ using System.Collections;
 
 public class rotateSword : MonoBehaviour {
 
-	public GameObject swordController;
-	public GameObject p2SwordController;
+	private GameObject swordController;
+	private GameObject p2SwordController;
 	public float deadzone = 0.6f; //Adjust in scene
 
 	private Vector2 inputControl;
@@ -14,8 +14,18 @@ public class rotateSword : MonoBehaviour {
 	private float angle;
 	private float p2Angle;
 	//Adjusts by angle without using a CharacterController
+
+	void start(){
+
+		swordController = GameObject.FindWithTag ("P1SwordController");
+		p2SwordController = GameObject.FindWithTag ("P2SwordController");
+	}
 	
 	void Update(){
+
+		swordController = GameObject.FindWithTag ("P1SwordController");
+		p2SwordController = GameObject.FindWithTag ("P2SwordController");
+
 		float xRotate = Input.GetAxis ("RightAnalog_horizontal");
 		float yRotate = Input.GetAxis ("RightAnalog_vertical");
 
