@@ -5,6 +5,10 @@ public class HitDetect : MonoBehaviour {
 
 	public GameObject player;
 
+	void Start(){		
+		
+	}
+
 
 	void OnTriggerEnter(Collider col){
 
@@ -12,27 +16,40 @@ public class HitDetect : MonoBehaviour {
 
 		case "Player1":
 			Destroy (col.gameObject);
-		
 			StartCoroutine ("respawnP1");
+	
+			PlayerMovement.p2Kills += 1;
+
+			Debug.Log (PlayerMovement.p2Kills);
+		
 			break;
 
 		case "Player2":
 			Destroy (col.gameObject);
 			StartCoroutine ("respawnP2");
+		
+			PlayerMovement.p1Kills += 1;
+
+			Debug.Log (PlayerMovement.p1Kills);
 			break;
 
 		case "Player1(Clone)":
+
+
+			PlayerMovement.p2Kills += 1;
 			StartCoroutine ("respawnP1");
+			Debug.Log (PlayerMovement.p2Kills);
 			break;
 
 		case "Player2(Clone)":
 			Destroy (col.gameObject);
 			StartCoroutine ("respawnP2");
+
+			Debug.Log (PlayerMovement.p1Kills);
+			PlayerMovement.p1Kills += 1;
 			break;
 
-		case "p1Hit":
-			break;
-		case "p2Hit":
+		case "ATTACK CUBE":
 			break;
 		}
 	}

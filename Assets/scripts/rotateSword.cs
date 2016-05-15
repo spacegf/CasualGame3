@@ -40,7 +40,7 @@ public class rotateSword : MonoBehaviour {
 		angle = Mathf.Atan2(xRotate, yRotate)*Mathf.Rad2Deg;
 		p2Angle = Mathf.Atan2 (p2XRotate, p2YRotate)*Mathf.Rad2Deg;
 
-		Debug.Log (p2Angle);
+		//Debug.Log (p2Angle);
 
 		p1UpdateCheck();
 		p2UpdateCheck();

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -14,7 +15,11 @@ public class PlayerMovement : MonoBehaviour {
 	private bool p1Crouched = false;
 	private bool p2Crouched = false;
 
+	public static int p1Kills, p2Kills;
+
 	public BoxCollider p1HitBx, p2HitBx;
+
+	public Text p1Killnum, p2Killnum;
 
 	public float crouchTimer = 0; //use deltatime to prevent gamespeed from taking over
 	public float startTimer = 1.5f;
@@ -50,6 +55,9 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		p1Killnum.text = p1Kills.ToString ();
+		p2Killnum.text = p2Kills.ToString ();
+
 		if (playable) {
 
 			 p1 = GameObject.FindGameObjectWithTag ("Player1");
@@ -68,6 +76,10 @@ public class PlayerMovement : MonoBehaviour {
 			Mathf.Clamp (dashDuration, 0, dashDelay);
 		}
 
+		if (!playable) {
+
+			SceneManager.LoadScene ("scene1");
+		}
 	}
 
 	void p1Movement(){
