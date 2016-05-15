@@ -32,11 +32,15 @@ public class rotateSword : MonoBehaviour {
 		float p2XRotate = Input.GetAxis ("P2RightAnalog_horizontal");
 		float p2YRotate = Input.GetAxis ("P2RightAnalog_vertical");
 
+
+
 		inputControl = new Vector2(xRotate, yRotate); 
 		p2InputControl = new Vector2(p2XRotate, p2YRotate);
 		
 		angle = Mathf.Atan2(xRotate, yRotate)*Mathf.Rad2Deg;
-		p2Angle = Mathf.Atan2 (xRotate, yRotate)*Mathf.Rad2Deg;
+		p2Angle = Mathf.Atan2 (p2XRotate, p2YRotate)*Mathf.Rad2Deg;
+
+		Debug.Log (p2Angle);
 
 		p1UpdateCheck();
 		p2UpdateCheck();
