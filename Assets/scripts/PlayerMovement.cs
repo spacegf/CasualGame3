@@ -4,7 +4,8 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
-	public float speed = 1; 
+	public float speed = 3; 
+	public float jumpHeight = 5;
 	public float startingHealth = 1000;
 	public float healthChng = 2.5f;
 	public float healthDegn = 0.33f;
@@ -123,7 +124,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (Input.GetAxis("Jump") > 0) {
 			
 			if (jump) {
-				p1.transform.position += new Vector3 (0f, speed * Time.deltaTime, 0f);
+				p1.transform.position += new Vector3 (0f, jumpHeight * Time.deltaTime, 0f);
 				jump = false; 
 			}  jump = true; 
 		}
@@ -214,7 +215,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		if(Input.GetAxis("P2Jump") > 0){
 			if (jump) {
-				p2.transform.position += new Vector3 (0f, speed * Time.deltaTime, 0f);
+				p2.transform.position += new Vector3 (0f, jumpHeight * Time.deltaTime, 0f);
 				jump = false;
 			}  
 
