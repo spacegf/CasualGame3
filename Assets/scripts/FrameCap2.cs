@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FrameCap : MonoBehaviour {
+public class FrameCap2 : MonoBehaviour {
 
 	float dTime = 0.0f;
 
 	void Awake(){
 		Time.timeScale = 4.0f;
 		QualitySettings.vSyncCount = 0;
-		Application.targetFrameRate = 480;
+		Application.targetFrameRate = 120;
 	}
 	void Update(){
 		dTime += (Time.deltaTime - dTime) * 0.1f;

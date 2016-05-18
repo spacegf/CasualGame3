@@ -45,8 +45,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\scripts\FrameCap.cs" />
+     <Compile Include="Assets\EmptyClass.cs" />
+     <Compile Include="Assets\scripts\FrameCap2.cs" />
+     <Compile Include="Assets\scripts\FrameCap_Proper.cs" />
      <Compile Include="Assets\scripts\HitDetect.cs" />
+     <Compile Include="Assets\scripts\Ignition.cs" />
      <Compile Include="Assets\scripts\ObjectJitter.cs" />
      <Compile Include="Assets\scripts\PlayerMovement - Alternate.cs" />
      <Compile Include="Assets\scripts\PlayerMovement.cs" />
