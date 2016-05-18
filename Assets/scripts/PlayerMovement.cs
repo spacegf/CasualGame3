@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour {
 
 			if(p2 != null)
 			{
-				p2HitBx = GameObject.FindGameObjectWithTag ("P1HitBx");
+				p2HitBx = GameObject.FindGameObjectWithTag ("P2HitBx");
 				p2Hit = p2HitBx.GetComponent<BoxCollider> ();
 				p2Rigidbody = p2.GetComponent<Rigidbody>();
 			}
