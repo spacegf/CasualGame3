@@ -1,0 +1,47 @@
+Initialize engine version: 5.3.2f1 (e87ab445ead0)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 670M (ID=0x1213)
+    Vendor:   NVIDIA
+    VRAM:     2997 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\Github\CasualGame3\ACBTA_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Github\CasualGame3\ACBTA_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Github\CasualGame3\ACBTA_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading D:\Github\CasualGame3\ACBTA_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: D:\Github\CasualGame3\ACBTA_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Github\CasualGame3\ACBTA_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Github\CasualGame3\ACBTA_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Github\CasualGame3\ACBTA_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Github\CasualGame3\ACBTA_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\Github\CasualGame3\ACBTA_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.048 seconds
+Platform assembly: D:\Github\CasualGame3\ACBTA_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\Github\CasualGame3\ACBTA_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 3840x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.478521 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 136c -> priority: 1 
+  Thread -> id: 1894 -> priority: 1 
+The referenced script on this Behaviour (Game Object 'GameManager') is missing!
+ 
+(Filename:  Line: 1655)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.086893 ms
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 462.
+Total: 0.290363 ms (FindLiveObjects: 0.066710 ms CreateObjectMapping: 0.017960 ms MarkObjects: 0.185592 ms  DeleteObjects: 0.018815 ms)
+
+1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
