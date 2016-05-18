@@ -16,6 +16,23 @@ X button to attack
 
 Left and Right buttons dash in that drection 
 
+Alt keyboard controls (can't rotate attack using these)
+
+player 1:
+
+A and D moves left and right 
+
+F to attack 
+
+G to jump
+
+player 2: 
+
+left and right arrow keys to move 
+
+K to jump 
+
+L to attack 
 ## Team members 
 ### Grant Gorsline - Design, Movement and Physics Programming and Simulation, Art, Assets, Sound
 ### Max Peabody - Music
