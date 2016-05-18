@@ -1,5 +1,7 @@
 # A Conversation Between Two Artists
 
+![alt tag](http://i.imgur.com/EE2OWwu.png)
+
 A strategic two player fighting game.  
 
 Controllers required:
