@@ -6,8 +6,9 @@ public class FrameCap : MonoBehaviour {
 	float dTime = 0.0f;
 
 	void Awake(){
+		Time.timeScale = 4.0f;
 		QualitySettings.vSyncCount = 0;
-		Application.targetFrameRate = 120;
+		Application.targetFrameRate = 480;
 	}
 	void Update(){
 		dTime += (Time.deltaTime - dTime) * 0.1f;
