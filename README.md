@@ -34,6 +34,6 @@ K to jump
 
 L to attack 
 ## Team members 
-### Grant Gorsline - Design, Movement and Physics Programming and Simulation, Art, Assets, Sound
+### January Gorsline - Design, Movement and Physics Programming and Simulation, Art, Assets, Sound
 ### Max Peabody - Music
 ### Isaac Selleck  - Design, Systems Programming, Hit Detection ,HUD, Controller Support  
